@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dynamic Calendar</title>
+<style>
+        *{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:
+    radial-gradient(circle at left,#00d4ff,#0b0b2d 40%),
+    radial-gradient(circle at right,#8a2be2,transparent 30%);
+}
+/* Light Mode */
+
+body.light-mode{
+    background:#f4f4f4;
+}
+
+body.light-mode .calendar{
+    background:white;
+    box-shadow:0 0 20px rgba(0,0,0,0.15);
+}
+
+body.light-mode .header h2{
+    color:#222;
+}
+
+body.light-mode .days div{
+    color:#5a2d91;
+}
+
+body.light-mode .dates div{
+    color:#222;
+}
+
+body.light-mode .dates div:hover{
+    background:#e8e8e8;
+}
+
+body.light-mode .today{
+    color:white;
+}
+
+#themeToggle{
+    width:45px;
+    height:45px;
+    border:none;
+    border-radius:50%;
+    cursor:pointer;
+    font-size:18px;
+    background:#5a2d91;
+    color:white;
+}
+.calendar{
+    width:420px;
+    background:rgba(15,15,35,0.95);
+    backdrop-filter:blur(15px);
+    border-radius:25px;
+    padding:25px;
+    box-shadow:0 0 40px rgba(0,0,0,0.5);
+}
+
+.header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:25px;
+}
+
+.header h2{
+    color:#fff;
+    font-size:24px;
+    letter-spacing:1px;
+}
+
+.header button{
+    width:45px;
+    height:45px;
+    border:none;
+    border-radius:50%;
+    background:#5a2d91;
+    color:white;
+    font-size:20px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.header button:hover{
+    transform:scale(1.1);
+}
+
+.days,
+.dates{
+    display:grid;
+    grid-template-columns:repeat(7,1fr);
+    gap:10px;
+}
+
+.days div{
+    text-align:center;
+    color:#7ffcff;
+    font-weight:bold;
+    padding:10px 0;
+}
+
+.dates div{
+    height:50px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:white;
+    border-radius:12px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.dates div:hover{
+    background:#5a2d91;
+}
+
+.empty{
+    visibility:hidden;
+}
+
+.today{
+    background:linear-gradient(135deg,#00cfff,#7b2cff);
+    font-weight:bold;
+    color:white;
+}
+
+@media(max-width:500px){
+
+    .calendar{
+        width:95%;
+        padding:20px;
+    }
+
+    .dates div{
+        height:45px;
+    }
+
+    .header h2{
+        font-size:20px;
+    }
+}*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:
+    radial-gradient(circle at left,#00d4ff,#0b0b2d 40%),
+    radial-gradient(circle at right,#8a2be2,transparent 30%);
+}
+/* Light Mode */
+
+body.light-mode{
+    background:#f4f4f4;
+}
+
+body.light-mode .calendar{
+    background:white;
+    box-shadow:0 0 20px rgba(0,0,0,0.15);
+}
+
+body.light-mode .header h2{
+    color:#222;
+}
+
+body.light-mode .days div{
+    color:#5a2d91;
+}
+
+body.light-mode .dates div{
+    color:#222;
+}
+
+body.light-mode .dates div:hover{
+    background:#e8e8e8;
+}
+
+body.light-mode .today{
+    color:white;
+}
+
+#themeToggle{
+    width:45px;
+    height:45px;
+    border:none;
+    border-radius:50%;
+    cursor:pointer;
+    font-size:18px;
+    background:#5a2d91;
+    color:white;
+}
+.calendar{
+    width:420px;
+    background:rgba(15,15,35,0.95);
+    backdrop-filter:blur(15px);
+    border-radius:25px;
+    padding:25px;
+    box-shadow:0 0 40px rgba(0,0,0,0.5);
+}
+
+.header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:25px;
+}
+
+.header h2{
+    color:#fff;
+    font-size:24px;
+    letter-spacing:1px;
+}
+
+.header button{
+    width:45px;
+    height:45px;
+    border:none;
+    border-radius:50%;
+    background:#5a2d91;
+    color:white;
+    font-size:20px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.header button:hover{
+    transform:scale(1.1);
+}
+
+.days,
+.dates{
+    display:grid;
+    grid-template-columns:repeat(7,1fr);
+    gap:10px;
+}
+
+.days div{
+    text-align:center;
+    color:#7ffcff;
+    font-weight:bold;
+    padding:10px 0;
+}
+
+.dates div{
+    height:50px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:white;
+    border-radius:12px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.dates div:hover{
+    background:#5a2d91;
+}
+
+.empty{
+    visibility:hidden;
+}
+
+.today{
+    background:linear-gradient(135deg,#00cfff,#7b2cff);
+    font-weight:bold;
+    color:white;
+}
+
+@media(max-width:500px){
+
+    .calendar{
+        width:95%;
+        padding:20px;
+    }
+
+    .dates div{
+        height:45px;
+    }
+
+    .header h2{
+        font-size:20px;
+    }
+}
+    </style>
+</head>
+<body>
+
+<div class="calendar">
+
+    <div class="header">
+        <button id="prev">&#10094;</button>
+
+        <h2 id="monthYear"></h2>
+        <button id="themeToggle">🌙</button>
+
+        <button id="next">&#10095;</button>
+    </div>
+
+    <div class="days">
+        <div>Sun</div>
+        <div>Mon</div>
+        <div>Tue</div>
+        <div>Wed</div>
+        <div>Thu</div>
+        <div>Fri</div>
+        <div>Sat</div>
+    </div>
+
+    <div id="dates" class="dates"></div>
+
+</div>
+
+<script>
+       const monthYear = document.getElementById("monthYear");
+const datesContainer = document.getElementById("dates");
+
+const prevBtn = document.getElementById("prev");
+const nextBtn = document.getElementById("next");
+
+let currentDate = new Date();
+
+function renderCalendar() {
+
+    const year = currentDate.getFullYear();
+    const month = currentDate.getMonth();
+
+    const firstDay = new Date(year, month, 1).getDay();
+    const totalDays = new Date(year, month + 1, 0).getDate();
+
+    const today = new Date();
+
+    const months = [
+        "January", "February", "March", "April",
+        "May", "June", "July", "August",
+        "September", "October", "November", "December"
+    ];
+
+    monthYear.textContent = `${months[month]} ${year}`;
+
+    datesContainer.innerHTML = "";
+
+    // Empty boxes before first day
+    for (let i = 0; i < firstDay; i++) {
+        const emptyDiv = document.createElement("div");
+        emptyDiv.classList.add("empty");
+        datesContainer.appendChild(emptyDiv);
+    }
+
+    // Dates
+    for (let day = 1; day <= totalDays; day++) {
+
+        const dateDiv = document.createElement("div");
+        dateDiv.textContent = day;
+
+        if (
+            day === today.getDate() &&
+            month === today.getMonth() &&
+            year === today.getFullYear()
+        ) {
+            dateDiv.classList.add("today");
+        }
+
+        datesContainer.appendChild(dateDiv);
+    }
+}
+
+// Previous Month
+prevBtn.addEventListener("click", () => {
+    currentDate.setMonth(currentDate.getMonth() - 1);
+    renderCalendar();
+});
+
+// Next Month
+nextBtn.addEventListener("click", () => {
+    currentDate.setMonth(currentDate.getMonth() + 1);
+    renderCalendar();
+});
+
+// Initial Load
+renderCalendar();
+const themeToggle = document.getElementById("themeToggle");
+
+themeToggle.addEventListener("click", () => {
+
+    document.body.classList.toggle("light-mode");
+
+    if(document.body.classList.contains("light-mode")){
+        themeToggle.textContent = "☀️";
+    }else{
+        themeToggle.textContent = "🌙";
+    }
+
+});
+    </script>
+
+</body>
+</html>

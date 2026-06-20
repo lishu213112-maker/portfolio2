@@ -14,6 +14,15 @@ body{
     overflow-x:hidden;
     background:#050816;
 }
+.logo img{
+    width: 70px;
+    height: auto;
+    border-radius: 15px;
+    background: rgba(255,255,255,0.05);
+    padding: 6px;
+    box-shadow: 0 0 20px #4f7cff;
+    /* filter: drop-shadow(0 0 10px #6c63ff); */
+}
 .cursor-dot{
 
     width:12px;
@@ -499,7 +508,13 @@ section{
 }
 
 .card5{
-    background:url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&auto=format&fit=crop') center/cover;
+    background:url(image/project.jpeg) center/cover;
+}
+.card6{
+    background:url(image/calender.png) center/cover;
+}
+.card7{
+    background:url(image/calculator1.png) center/cover;
 }
 
 .overlay{
